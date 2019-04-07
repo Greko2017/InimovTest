@@ -5,6 +5,21 @@
 {% block content %}
 
 <div class="container offset-md-3 col-md-6">
+  
+    <script>
+        $(".alert").alert();
+      </script>
+  {% for error in form.errors %}
+    
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>{{error}}</strong> 
+    </div>
+  {% endfor %}
+  {{form.errors}}
+  
 <h1>Sign Up</h1>
     <form action="" method="post">
             {% csrf_token %}

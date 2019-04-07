@@ -10,6 +10,7 @@ var tableToExcel = (function() {
     window.location.href = uri + base64(format(template, ctx))
   }
 })
+
         var xport = {
             _fallbacktoCSV: true,  
             toXLS: function(tableId, filename) {   

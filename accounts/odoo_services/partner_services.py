@@ -22,7 +22,7 @@ class PartnerServices():
                 self.PASS,{})
         except Exception as e:
             return "We encounter an Error while connecting to Odoo Server \n\n Error Message :"+str(e)
-        return self.UID
+        return self.UID 
 
     def partnerAdd(self,partnerRow):
         try:
