@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load get_country_name %}
+{% block title %}Partners List | {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+
+    <div class="jumbotron jumbotron-fluid jumbotron-sm">
+        <div class="container">
+            <h1 class="display-3">Django Odoo Integration</h1>
+            <p class="lead">Implémenter un système de connexion / déconnexion sur Odoo via les api. Recuperer et Afficher les informations des headers et details des tables d'achat dans un formulaire, </p>
+            <p class="lead">avec un bouton permettant d'exporter les informations sur fichier texte ou excel. Detailler la prodecure de deploiement sur un serveur en ligne de votre choix.</p>
+            <p class="lead">Mettre le projet sur un depot git et nous partager le lien.</p>
+            <hr class="my-2">
+            <!-- <p class="lead">
+                <a class="" href="{% url 'odoo_django:partners_list' %}" role="button">Refresh </a>
+            </p> -->
+            <form action="" method="post">{% csrf_token %}<button type="submit" class="btn btn-outline-success">Retrieve partners list</button></form>
+        </div>
+    </div>
+   
+    
+    <div class="container content">                        
+            
+            {% if context.partner_list %}    
+                <table id="testTable" class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th colspan="8" scope="colgroup" style="text-align: center">Partner List</th>
+                        </tr>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Country</th>
+                            <th>Comment</th>
+                            <th>Website</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for partner  in context.partner_list %}
+                            <tr>
+                                <td>{{partner.id}}</td>
+                                
+                                <td>{{partner.name}}</td>
+                                
+                                {% if partner.country_id %}
+                                    <td>{{partner.country_id|get_country_name}}</td>
+                                {% else %}
+                                    <td>No country provided</td>
+                                {% endif %}
+                                
+                                {% if partner.comment %}
+                                    <td>{{partner.comment}}</td>
+                                {% else %}
+                                    <td>No Comment(s)</td>
+                                {% endif %}
+
+                                {% if partner.website %}
+                                    <td>{{partner.website}}</td>
+                                {% else %}
+                                    <td>No Website provided</td>
+                                {% endif %}
+
+                                {% if partner.email %}
+                                    <td>{{partner.email}}</td>
+                                {% else %}
+                                    <td>No Email provided</td>
+                                {% endif %}
+
+                                {% if partner.phone %}
+                                    <td>{{partner.phone}}</td>
+                                {% else %}
+                                    <td>No Phone provided</td>
+                                {% endif %}
+                                
+                            </tr>
+                        {% endfor %}
+                            
+                    </tbody>
+                </table>
+
+                <button class="btn btn-outline-secondary btn-sm" onclick="javascript:xport.toCSV('testTable','Partners List');" type="button">Export CSV</button>
+                <input class="btn btn-outline-success btn-sm" type="button" onclick="tableToExcel('testTable', 'Partners List')" value="Export to Excel">
+            {% else %}
+                <p>Partner List Press ont the butonn "Retrieve partners list" to get the partner list</p>
+          
+            {% endif %}   
+            
+    </div>
+
+{% endblock %}
+        
+
+        
