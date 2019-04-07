@@ -1,0 +1,32 @@
+
+div.alert {
+    margin-bottom: 0px !important
+}
+
+div.jumbotron {
+    background-color: rgba(137, 43, 226, 0.555);
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+div.footer {
+    background-color: rgba(14, 139, 14, 0.164) !important;
+}
+
+div.container.content {
+    padding-bottom: 20px !important;
+}
+div.container.offset-md-3.col-md-6{
+  
+  padding-top: 20px;
+ 
+  border-bottom-width: 40px;
+  padding-bottom: 70px;
+
+}
+footer div.footer {
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+}
